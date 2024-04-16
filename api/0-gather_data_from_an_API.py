@@ -24,19 +24,19 @@ api = 'https://jsonplaceholder.typicode.com'
 
 if __name__ == '__main__':
     """Retrieving tasks for a specific user"""
-    todos = requests.get(f'{api}/todos?userId={argv[1]}')
-    todos_data = todos.json()
+    todo = requests.get(f'{api}/todos?userId={argv[1]}')
+    todo_data = todo.json()
 
     """Retrieval of user information"""
     users = requests.get(f'{api}/users/{argv[1]}')
     users_data = users.json()
 
     """Filtering completed tasks"""
-    completed_tasks = [task for task in todos_data if task['completed']]
+    completed_tasks = [task for task in todo_data if task['completed']]
 
     user_name = users_data["name"]
     len_completed_tasks = len(completed_tasks)
-    total_todo = len(todos_data)
+    total_todo = len(todo_data)
 
     print("Employee {} is done with tasks({}/{}):".format(
             user_name,
